@@ -1,59 +1,5 @@
 #!/usr/bin/env python
-"""
-blender_importer.py
-Module purpose
---------------
-Utilities to import geometry and animation data into Blender from a simple TOML scene
-description and accompanying mesh animation text files produced by SOFA (using the Monitor component).
-This script is intended to be executed inside Blender's bundled Python interpreter
-(via --python) and manipulates bpy to import OBJ meshes, create keyframed animations
-for rigid and deformable objects.
-Python API :
-- version : 3.x (tested with 3.6)
-- documentation : https://docs.blender.org/api/3.6/
-High-level behavior
--------------------
-- Loads a TOML configuration describing a list of objects to import, each object
-    specifying at minimum a mesh (.obj) and a monitor file that contains recorded
-    trajectories. Optional fields include type, scale, name, translation, rotation.
-- For each object:
-    - Imports the associated OBJ mesh into the current Blender scene.
-    - Applies a uniform or per-axis scale if present.
-    - If object is 'static' applies fixed transform from translation/rotation values.
-    - If object is 'rigid' or 'deformable' loads time series from the monitor file
-        and creates Blender animation keyframes: translation + quaternion rotation for
-        rigids, per-vertex animation (vertices[].co) for deformables.
-- The frame range is set based on the recording length (or an explicit frame count
-    in the TOML). The script supports an optional BLENDER_4 flag which switches the
-    OBJ import operator argument names to the API used by Blender 4+.
-
-Example TOML (illustrative)
----------------------------
-[[objects]]
-mesh = "chair"
-monitor = "chair_monitor.txt"
-type = "rigid"
-scale = [1.0, 1.0, 1.0]
-name = "Chair01"
-[[objects]]
-mesh = "cloth"
-monitor = "cloth_monitor.txt"
-type = "deformable"
-scale = 1.0
-name = "Cloth01"
-
-Execution from command line
----------------------------
-Run from shell where Blender's executable is accessible:
-blender --python blender_importer.py -- scene_config.toml
-The "--" separator splits Blender's command-line arguments from the script's own
-arguments; the script reads the TOML path after the "--".
-"""
 # -*- coding: utf-8 -*-
-
-# import sys
-# print(sys.executable)
-# print(sys.path)
 
 import bpy
 from math import radians
@@ -269,6 +215,12 @@ def add_animation_deformable(obj, indices, times, data):
 
 _mesh_cache = {}
 def import_mesh_cached(mesh_name):
+    """
+    Import the mesh file named mesh_name.obj.
+    If the mesh has already been loaded before, return the previously loaded data; else, load the file and return the data.
+    
+    :param mesh_name: str: name of the mesh file without the extension
+    """
     # Returns an object linked to a cached mesh datablock (not animation)
     if mesh_name in _mesh_cache:
         mesh_data = _mesh_cache[mesh_name]
