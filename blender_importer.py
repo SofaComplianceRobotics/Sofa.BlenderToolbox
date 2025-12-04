@@ -219,7 +219,8 @@ def import_mesh_cached(mesh_name):
     Import the mesh file named mesh_name.obj.
     If the mesh has already been loaded before, return the previously loaded data; else, load the file and return the data.
     
-    :param mesh_name: str: name of the mesh file without the extension
+    Args:
+        - mesh_name: str: name of the mesh file without the extension
     """
     # Returns an object linked to a cached mesh datablock (not animation)
     if mesh_name in _mesh_cache:
