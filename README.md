@@ -61,10 +61,10 @@ name = "Cloth01"
 ### Good to know
 
 **Linked Object**
-For efficiency sake, if an object uses a mesh that already has been loaded before by another previous object, the created object will have its object-data [linked](https://docs.blender.org/manual/en/3.6/scene_layout/object/editing/link_transfer/index.html) to the previous object thanks to the `bpy.data.objects.new()` method.
+For efficiency sake, if an object uses a mesh that already has been loaded before by another previous object, the created object will have its object-data [linked](https://docs.blender.org/manual/en/3.6/scene_layout/object/editing/link_transfer/index.html) to the previous object thanks to the [`bpy.data.objects.new()`](https://docs.blender.org/api/3.6/bpy.types.BlendDataObjects.html#bpy.types.BlendDataObjects.new) method.
 
 **Paralellization**
-To speed up the scene creation, the parsing of the monitor files is paralellized on 16 threads by default. To change this, you can set the `num_workers` parameter of the `import_scene` call line 400.
+To speed up the scene creation, the parsing of the monitor files is paralellized on 16 threads by default. To change this, you can set the `num_workers` parameter of the `import_scene` call [line 400](https://github.com/SofaComplianceRobotics/Sofa.BlenderToolbox/blob/6eca9a42ccff0c3f9bcfcccba2f9c3b4da1e8f8b/blender_importer.py#L400).
 ```python
 import_scene(scene_config_file, num_workers=42)
 ```
