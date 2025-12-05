@@ -1,6 +1,12 @@
 # Sofa.BlenderToolbox
 Utils to export the movement of objects in a SOFA scene as an animation in Blender.
 
+<img src="example/sofascene.png" style="display:inline" width=45%/> <img src="example/rendered.png" style="display:inline" width=45%/>
+
+<video controls>
+<source src="example/animation.mp4"/> 
+</video>
+
 ## Requirements
 - [SOFA Framework](https://www.sofa-framework.org/)
 - [SofaValidation](https://github.com/sofa-framework/SofaValidation#) plugin
