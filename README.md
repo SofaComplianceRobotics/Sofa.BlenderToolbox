@@ -1,6 +1,11 @@
 # Sofa.BlenderToolbox
 Utils to export the movement of objects in a SOFA scene as an animation in Blender.
 
+It is composed of two modules:
+- [animation_exporter.py](#animation-exporteranimation_exporterpy)
+- [blender_importer.py](#blender-importer-blender_importerpy)
+
+With this, you can render nice SOFA scenes(left) using Blender(right).
 <img src="example/sofascene.png" style="display:inline" width=45%/> <img src="example/rendered.png" style="display:inline" width=45%/>
 
 https://github.com/user-attachments/assets/3aa80034-c865-4510-b93b-979e02fead4d
@@ -20,7 +25,7 @@ https://github.com/user-attachments/assets/3aa80034-c865-4510-b93b-979e02fead4d
 - **Export Configuration**: Generate the TOML file with animation parameters
 - **Import to Blender**: Use `blender_importer.py` to load the animation in Blender
 
-# Animation Exporter ([animation_exporter.py](animation_exporter.py))
+# Animation Exporter([animation_exporter.py](animation_exporter.py))
 
 This module provides tools to bridge SOFA simulations with Blender. It automatically configures SOFA nodes to export mesh geometry and animation data, then generates a TOML configuration file that can be imported into Blender using the companion `blender_importer.py` script.
 
