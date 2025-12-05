@@ -3,9 +3,7 @@ Utils to export the movement of objects in a SOFA scene as an animation in Blend
 
 <img src="example/sofascene.png" style="display:inline" width=45%/> <img src="example/rendered.png" style="display:inline" width=45%/>
 
-<video controls>
-<source src="example/animation.mp4"/> 
-</video>
+https://github.com/user-attachments/assets/3aa80034-c865-4510-b93b-979e02fead4d
 
 ## Requirements
 - [SOFA Framework](https://www.sofa-framework.org/)
@@ -21,7 +19,6 @@ Utils to export the movement of objects in a SOFA scene as an animation in Blend
 - **Run Simulation**: Execute your SOFA simulation
 - **Export Configuration**: Generate the TOML file with animation parameters
 - **Import to Blender**: Use `blender_importer.py` to load the animation in Blender
-
 
 # Animation Exporter ([animation_exporter.py](animation_exporter.py))
 
@@ -65,7 +62,15 @@ def createScene(rootNode):
 
 ## Description
 ### addExportComponentsToNode
-This function basically adds needed node for the export and 
+This function basically adds needed nodes for the export:
+- [MeshExporter](https://sofa-framework.github.io/doc/components/io/mesh/meshexporter/)
+- [Monitor](https://sofa-framework.github.io/doc/using-sofa/inspect-components/#the-monitor-component)
+
+The MeshExporter is added if no `meshFilename` argument is provided. If so, a node containing a Topology and the vertices that will compose the mesh are mandatory arguments.
+The Monitor is added to the node containing the MechanicalObject of the `mechaNode` argument. It will record the mechanical states of the MechanicalObject. 
+
+### exportAnimationConfig
+This function writes into the TOML file all the objects added through the `addExportComponentsToNode` function.
 
 # Blender Importer ([blender_importer.py](blender_importer.py))
 Import SOFA animation to Blender using bpy (Blender Python API).
