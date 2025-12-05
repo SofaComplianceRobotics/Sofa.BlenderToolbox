@@ -1,4 +1,67 @@
 # Sofa.BlenderToolbox
+Utils to export the movement of objects in a SOFA scene as an animation in Blender.
+
+## Requirements
+- [SOFA Framework](https://www.sofa-framework.org/)
+- [SofaValidation](https://github.com/sofa-framework/SofaValidation#) plugin
+- Python 3.x
+- `toml` package: `pip install toml`
+- Blender (for rendering the exported animations)
+
+## Usage
+### Basic Workflow
+
+- **Add Export Components to Nodes**: Configure SOFA nodes to export their animation data
+- **Run Simulation**: Execute your SOFA simulation
+- **Export Configuration**: Generate the TOML file with animation parameters
+- **Import to Blender**: Use `blender_importer.py` to load the animation in Blender
+
+
+# Animation Exporter ([animation_exporter.py](animation_exporter.py))
+
+This module provides tools to bridge SOFA simulations with Blender. It automatically configures SOFA nodes to export mesh geometry and animation data, then generates a TOML configuration file that can be imported into Blender using the companion `blender_importer.py` script.
+
+## Requirements
+- [SOFA Framework](https://www.sofa-framework.org/)
+- [SofaValidation](https://github.com/sofa-framework/SofaValidation#) plugin
+- Python 3.x
+- `toml` package: `pip install toml`
+
+## Usage
+1. Place the `animation_exporter.py` file somewhere accessible from your SOFA Python scene.
+2. For each element of your scene that you want in the Blender animation use the `addExportComponentsToNode()` method.
+3. At the end of your `createScene()` function, add a call to `exportAnimationConfig()`
+
+Example
+```python
+import Sofa
+import animation_exporter
+
+def createScene(rootNode):
+    # Create your SOFA scene...
+    mechanicalNode = rootNode.addChild('MechanicalObject')
+    topologyNode = rootNode.addChild('Topology')
+    
+    # Add export components for a deformable object
+    addExportComponentsToNode(
+        name='soft_body',
+        mechaNode=mechanicalNode,
+        topologyNode=topologyNode,
+        objectType='deformable',
+        template='Vec3',
+        scale=[1.0, 1.0, 1.0],
+        translation=[0, 0, 0]
+    )
+    
+    # At the end of your scene setup
+    exportAnimationConfig('animation_config.toml')
+```
+
+## Description
+### addExportComponentsToNode
+This function basically adds needed node for the export and 
+
+# Blender Importer ([blender_importer.py](blender_importer.py))
 Import SOFA animation to Blender using bpy (Blender Python API).
 
 It imports geometry and animation data into Blender from a simple TOML scene description and accompanying mesh animation text files produced by SOFA (using the Monitor component).

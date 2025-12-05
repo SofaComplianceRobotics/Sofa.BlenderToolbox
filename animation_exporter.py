@@ -4,8 +4,8 @@ import pathlib
 import Sofa
 
 """
-Utils to render the animation in Blender
-We use the script `blender_importer.py` to set up the animation in Blender. This script (`blender_importer.py`) takes a toml file as input.
+Utils to export the movement of objects in a SOFA scene as an animation in Blender
+We use the script `blender_importer.py` to import the animation in Blender. This script (`blender_importer.py`) takes a toml file as input.
 """
 
 outputDir: str = os.path.join(pathlib.Path.home(), '.sofa_runs', 'last_sofa_run') + os.sep

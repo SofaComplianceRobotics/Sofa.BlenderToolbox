@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Utils to import an animation in Blender from a TOML file
+We use the script `animation_exporter.py` to generate the TOML file from a SOFA scene.
+"""
 
 import bpy
 from math import radians
