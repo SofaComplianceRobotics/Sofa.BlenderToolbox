@@ -6,6 +6,7 @@ It is composed of two modules:
 - [blender_importer.py](#blender-importer-blender_importerpy)
 
 With this, you can render nice SOFA scenes(left) using Blender(right).
+
 <img src="example/sofascene.png" style="display:inline" width=45%/> <img src="example/rendered.png" style="display:inline" width=45%/>
 
 https://github.com/user-attachments/assets/3aa80034-c865-4510-b93b-979e02fead4d
