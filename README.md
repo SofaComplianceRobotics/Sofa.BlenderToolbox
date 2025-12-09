@@ -19,12 +19,16 @@ https://github.com/user-attachments/assets/3aa80034-c865-4510-b93b-979e02fead4d
 - Blender (for rendering the exported animations)
 
 ## Usage
+You can find an example in the [example folder](https://github.com/SofaComplianceRobotics/Sofa.BlenderToolbox/tree/d5455a8ae09d6dbca4d17d1f216168f3f4fd14c3/example).
+The folder contains a SOFA scene that record the motion of the objects in the scene and creates a TOML file utsing the tools in this repo. The final ready-to-render Blender scene is also available with the textures and a resulting video.
+
 ### Basic Workflow
 
-- **Add Export Components to Nodes**: Configure SOFA nodes to export their animation data
+- **Add Export Components to Nodes**: Configure SOFA nodes to export their animation data using the [animation exporter](#animation-exporteranimation_exporterpy)
 - **Run Simulation**: Execute your SOFA simulation
 - **Export Configuration**: Generate the TOML file with animation parameters
-- **Import to Blender**: Use `blender_importer.py` to load the animation in Blender
+- **Import to Blender**: Use `blender_importer.py` to load the animation in Blender using the [Blender importer](#blender-importer-blender_importerpy)
+- **Polish and render in the Blender scene**: you can then work on the scene to render nice videos 🎉 
 
 # Animation Exporter([animation_exporter.py](animation_exporter.py))
 
