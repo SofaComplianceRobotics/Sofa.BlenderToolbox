@@ -90,6 +90,7 @@ def createScene(rootNode):
 
 <details>
 <summary><h2 style="display:inline-block">Description</h2></summary>
+    
 ### addExportComponentsToNode
 This function basically adds needed nodes for the export:
 - [MeshExporter](https://sofa-framework.github.io/doc/components/io/mesh/meshexporter/)
