@@ -1,14 +1,16 @@
 import toml
 import os
 import pathlib
+import tempfile
+import time
 import Sofa
 
 """
 Utils to export the movement of objects in a SOFA scene as an animation in Blender
 We use the script `blender_importer.py` to import the animation in Blender. This script (`blender_importer.py`) takes a toml file as input.
 """
-
-outputDir: str = os.path.join(pathlib.Path.home(), '.sofa_runs', 'last_sofa_run') + os.sep
+runDirName = 'run_' + str(time.strftime("%Y-%m-%H-%M-%S")) 
+outputDir: str = os.path.join(tempfile.gettempdir(), '.sofa_runs', runDirName) + os.sep
 
 blenderAnimationConfig = {
         'frames': 2500,
@@ -221,11 +223,16 @@ def exportAnimationConfig(filename):
         rotation = [0.0, 0.0, 0.0]
         monitor = "path/to/object1_x.txt"
     """
+
+    if not os.path.exists(outputDir):
+        os.makedirs(outputDir)
+
     for object in blenderAnimationConfig['objects']:
         path = object['mesh']
         if not os.path.exists(path+'.obj'):
             Sofa.msg_warning("Mesh file path does not exist so creating it: ", path)
-            open(path+'.obj', 'w')
+            with open(path+'.obj', 'x') as f:
+                continue
 
     with open(outputDir+filename, 'w+') as f:
         # Write toml file, overwriting if it exists
