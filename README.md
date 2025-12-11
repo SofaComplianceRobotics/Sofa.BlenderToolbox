@@ -71,7 +71,9 @@ import animation_exporter
 def createScene(rootNode):
     # Create your SOFA scene...
     mechanicalNode = rootNode.addChild('MechanicalObject')
+    # [...] Add a MechanicalObject and other components you need
     topologyNode = rootNode.addChild('Topology')
+    # [...] Add a Topology and other components you need
     
     # Add export components for a deformable object
     addExportComponentsToNode(
